@@ -1,0 +1,27 @@
+body {
+	font-family: sans-serif;
+	color: #333333;
+	text-align: center;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background-image: linear-gradient(180deg, gray 50%, white 50%);
+}
+
+canvas {
+	background-color: #FFFFFF;
+	padding: 0;
+	margin: 0;
+}
+
+.arcade {
+	font-family: "Press Start 2P", sans-serif;
+}
+
+.warning {
+	background-color: #FFF8C9;
+	border: 2px solid #F7E25C;
+	border-radius: 0.5rem;
+	margin: 1rem auto;
+	width: 50%;
+}

@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 app.use(express.static('public'));
 
-const port = 80;
+const port = process.env.PORT || 80;
 
 app.get("/", (req, res)=>{
 	console.log("requested");

@@ -3,9 +3,8 @@ body {
 	color: #333333;
 	text-align: center;
 	height: 100%;
-	padding: 0;
+	padding: 0 2rem 0 0;
 	margin: 0;
-	background-image: linear-gradient(180deg, gray 50%, white 50%);
 }
 
 canvas {
@@ -14,14 +13,99 @@ canvas {
 	margin: 0;
 }
 
-.arcade {
-	font-family: "Press Start 2P", sans-serif;
-}
-
 .warning {
 	background-color: #FFF8C9;
 	border: 2px solid #F7E25C;
 	border-radius: 0.5rem;
 	margin: 1rem auto;
 	width: 50%;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #333;
+}
+/* @media (min-width: 600px) {
+  body {
+	padding: 60px 10px;
+  }
+} */
+* {
+  box-sizing: border-box;
+}
+h1 {
+  margin: 0;
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 36px;
+}
+p, ol, ul {
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 700px;
+  background: #e5e5e5;
+  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
+}
+div.panel {
+	width: 100%;
+}
+.input {
+  position: absolute;
+  opacity: 0;
+}
+.label {
+  width: 100%;
+  padding: 20px 30px;
+  background: #e5e5e5;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  color: #7f7f7f;
+  transition: background 0.1s, color 0.1s;
+}
+.label:hover {
+  background: #d8d8d8;
+}
+.label:active {
+  background: #ccc;
+}
+.input:focus + .label {
+  z-index: 1;
+}
+.input:checked + .label {
+  background: #fff;
+  color: #000;
+}
+@media (min-width: 600px) {
+  .label {
+	width: auto;
+  }
+}
+.panel {
+  display: none;
+  padding: 20px 30px 30px;
+  background: #fff;
+}
+@media (min-width: 600px) {
+  .panel {
+	order: 99;
+  }
+}
+.input:checked + .label + .panel {
+  display: block;
+}
+
+.footer {
+	text-align: center;
+	width: 100%;
+	padding: 2rem 0;
 }

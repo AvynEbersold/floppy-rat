@@ -124,6 +124,8 @@ let player = {
 	size: 10,
 	x: 0,
 	y: 0,
+	hitboxRatioX: 0.9, // width of hitbox relative to size of player
+	hitboxRatioY: 0.5, // width of hitbox relative to size of player
 	jumpReady: true,
 	rotationSpeed: 0.12, //SPEED AND STANDARD AMOUNT OF ROTATION
 	rotationAmount: 0, //THE OVERALL DIRECTION OF THE PLAYER
@@ -376,8 +378,8 @@ function detectCollision() {
 	if (game.gameOver != true) {
 		for (let i = 0; i < obstacleObject.obstacles.length; i++) {
 			let ob = obstacleObject.obstacles[i];
-			let a = player.y < ob.y + ob.height && player.y + game.width / player.size > ob.y;
-			let b = player.x + game.width / player.size > ob.x;
+			let a = player.y < ob.y + ob.height && player.y + (game.width / player.size) * player.hitboxRatioY > ob.y;
+			let b = player.x + (game.width / player.size) * player.hitboxRatioX > ob.x;
 			let c = player.x < ob.x + ob.width;
 			let d = player.x < ob.x + ob.width;
 			if (a && b && c && d) {

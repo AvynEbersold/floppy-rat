@@ -23,3 +23,15 @@ externalPort = 80
 [[ports]]
 localPort = 443
 externalPort = 3000
+
+[[ports]]
+localPort = 3000
+externalPort = 3002
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
+
+[[ports]]
+localPort = 8443
+externalPort = 3001

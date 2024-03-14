@@ -2,15 +2,10 @@ var express = require('express');
 var https = require('https');
 var http = require('http');
 var fs = require('fs');
-const app = express();
+var app = express();
 app.use(express.static('public'));
 
-var options = {
-  key: fs.readFileSync('privatekey.pem'),
-  cert: fs.readFileSync('floppyrat_com.crt')
-};
-
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 80;
 
 app.use(function(req, res, next) {
 	if (process.env.NODE_ENV != 'development' && !req.secure) {
@@ -20,14 +15,9 @@ app.use(function(req, res, next) {
 })
 
 app.get("/", (req, res)=>{
-	console.log("requested");
 	res.sendFile(__dirname + "/public/index.html");
 });
 
-http.createServer(app).listen(80, function(error) {
-		console.log(error ? error : "Server running on port 80");
-	});
-// Create an HTTPS service identical to the HTTP service.
-https.createServer(options, app).listen(port, function(error) {
-	console.log(error ? error : "Server running on port " + port);
+app.listen(port, (err)=>{
+	console.log(err ? err : "Server running on port " + port);
 });

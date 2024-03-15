@@ -55,11 +55,8 @@ let port = process.env.PORT || 3000;
 // 	}]
 // });
 
-app.use(function (req, res, next) {
-	if (process.env.NODE_ENV != "development" && !req.secure) {
-		return res.redirect("https://" + req.headers.host + req.url);
-	}
-	next();
+app.get("*", function(req, res, next) {
+	res.redirect("https://" + req.headers.host + req.path);
 });
 
 app.get("/", (req, res) => {

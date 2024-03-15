@@ -55,8 +55,12 @@ let port = process.env.PORT || 3000;
 // 	}]
 // });
 
-app.get("*", function(req, res, next) {
-	res.redirect("https://" + req.headers.host + req.path);
+app.use((req, res, next) => {
+	if(req.secure){
+		next();
+	} else {
+		res.redirect('https://www.floppyrat.com' + req.url);
+	}
 });
 
 app.get("/", (req, res) => {

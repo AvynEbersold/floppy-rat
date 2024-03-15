@@ -79,7 +79,7 @@ game.scrollSpeed = game.width / 400; //SETS THE SCROLLSPEED TO BE PROPORTIONAL T
 //////////////////////////////////////////////////////////////////////////////
 
 let images = {
-	groundScrollSpeed: game.scrollSpeed / 2,
+	groundScrollSpeed: game.scrollSpeed,
 	firstGround: true,
 	grounds: [],
 	createGround: true,
@@ -238,10 +238,6 @@ function displayBackground() {
 	for (let i = 0; i < images.mountains.length; i++) {
 		c.drawImage(mountains, images.mountains[i].x, player.groundY / 2, game.width, player.groundY / 2);
 	}
-
-	for (let i = 0; i < images.grounds.length; i++) {
-		c.drawImage(ground, images.grounds[i].x, player.groundY, game.width, game.height - player.groundY);
-	}
 }
 
 function moveBackground() {
@@ -305,6 +301,9 @@ function displayForeground() {
 		c.drawImage(tube, obstacleObject.obstacles[i].x, obstacleObject.obstacles[i].y, obstacleObject.obstacles[i].width, obstacleObject.obstacles[i].height);
 	}
 
+	for (let i = 0; i < images.grounds.length; i++) {
+		c.drawImage(ground, images.grounds[i].x, player.groundY, game.width, game.height - player.groundY);
+	}
 
 	c.fillStyle = "#000000";
 	c.globalAlpha = game.gameDarkness;

@@ -9,7 +9,6 @@ var fs = require("fs");
 
 const app = express();
 app.use(express.static("public"));
-app.enable("trust proxy");
 
 // use heroku automated certificate management?
 
@@ -55,17 +54,16 @@ let port = process.env.PORT || 3000;
 // 	}]
 // });
 
-app.use((req, res, next) => {
-	if(req.secure){
-		next();
+app.get("*", (req, res, next) => {
+	if(req.protocol == "http" && process.env.PORT){
+		res.redirect("https://www.floppyrat.com");
 	} else {
-		res.redirect('https://www.floppyrat.com' + req.url);
+		next();
 	}
-});
+})
 
 app.get("/", (req, res) => {
-	console.log("requested");
-	res.sendFile(__dirname + "/public/index.html");
+	res.sendFile(__dirname + "/public/home.html");
 });
 
 app.listen(port, (err) => {

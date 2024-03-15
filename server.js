@@ -9,6 +9,7 @@ var fs = require("fs");
 
 const app = express();
 app.use(express.static("public"));
+app.enable("trust proxy");
 
 // use heroku automated certificate management?
 

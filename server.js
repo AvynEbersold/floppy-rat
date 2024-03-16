@@ -1,5 +1,4 @@
 var express = require("express");
-var fs = require("fs");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
@@ -37,7 +36,7 @@ app.use(passport.session());
 // connect to the db and set up mongoose schemas
 
 const key = process.env.DB_SECRET;
-mongoose.connect(`mongodb+srv://avynebersold:${key}@floppy-rat-database.cpcyqk5.mongodb.net/?retryWrites=true&w=majority&appName=floppy-rat-database`);
+//mongoose.connect(`mongodb+srv://avynebersold:${key}@floppy-rat-database.cpcyqk5.mongodb.net/?retryWrites=true&w=majority&appName=floppy-rat-database`);
 
 const userSchema = new mongoose.Schema({
 	username: String,
@@ -55,7 +54,7 @@ const leaderboardSchema = new mongoose.Schema({
 
 app.get("*", (req, res, next) => {
 	if(req.protocol != "https"){
-		res.redirect("https://www.floppyrat.com");
+		res.redirect('https://www.floppyrat.com' + req.originalUrl);
 	} else {
 		next();
 	}

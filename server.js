@@ -3,8 +3,9 @@ var https = require("https");
 var http = require("http");
 var fs = require("fs");
 const mongoose = require("mongoose");
-const session = require("express-session");
-const passport = require("passport");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
@@ -34,17 +35,15 @@ function isMobile(req) {
 
 //USE COOKIES WITH ENCRYPTION KEY
 const secret = process.env.SESSION_SECRET;
-//! THIS BLOCK CAUSES ERRORS
-//app.use(
-//	session({
-//		secret: secret,
-//		resave: false,
-//		saveUninitialized: false,
-//		cookie: { secure: true },
-//	}),
-//);
-//! THIS BLOCK COULD CAUSE ERRORS (BUT NO PROOF)
-//app.use(passport.session());
+// Use session middleware
+ app.use(session({
+	 secret: 'your-secret-key',
+	 resave: false,
+	 saveUninitialized: false
+ }));
+// Initialize Passport
+ app.use(passport.initialize());
+ app.use(passport.session());
 
 //CONNECT TO MONGODB DATABASE
 

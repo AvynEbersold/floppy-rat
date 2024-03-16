@@ -20,6 +20,7 @@
     "node-fetch": "^3.2.6",
     "openssl": "^2.0.0",
     "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0"
   },
   "description": ""

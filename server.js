@@ -55,7 +55,7 @@ const leaderboardSchema = new mongoose.Schema({
 
 app.get("*", (req, res, next) => {
 	if(req.protocol != "https"){
-		res.redirect('https://www.floppyrat.com' + req.originalUrl);
+		res.redirect("https://www.floppyrat.com");
 	} else {
 		next();
 	}

@@ -2,6 +2,7 @@ var express = require("express");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const app = express();
 app.use(express.static("public"));
@@ -58,7 +59,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone
 
 app.get("*", (req, res, next) => {
 	if(req.protocol != "https"){
-		res.redirect('https://www.floppyrat.com' + req.originalUrl);
+		res.redirect("https://www.floppyrat.com");
 	} else {
 		next();
 	}

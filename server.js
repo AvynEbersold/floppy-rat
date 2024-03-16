@@ -34,14 +34,16 @@ function isMobile(req) {
 
 //USE COOKIES WITH ENCRYPTION KEY
 const secret = process.env.SESSION_SECRET;
-app.use(
-	session({
-		secret: secret,
-		resave: false,
-		saveUninitialized: false,
-		cookie: { secure: true },
-	}),
-);
+//! THIS BLOCK CAUSES ERRORS
+//app.use(
+//	session({
+//		secret: secret,
+//		resave: false,
+//		saveUninitialized: false,
+//		cookie: { secure: true },
+//	}),
+//);
+//! THIS BLOCK COULD CAUSE ERRORS (BUT NO PROOF)
 //app.use(passport.session());
 
 //CONNECT TO MONGODB DATABASE

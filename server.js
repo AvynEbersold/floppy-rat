@@ -29,16 +29,16 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone
 }
 
 //USE COOKIES WITH ENCRYPTION KEY
-// const secret = process.env.SESSION_SECRET;
-// app.use(
-// 	session({
-// 		secret: secret,
-// 		resave: false,
-// 		saveUninitialized: false,
-// 	})
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
+const secret = process.env.SESSION_SECRET;
+app.use(
+ 	session({
+ 		secret: secret,
+ 		resave: false,
+ 		saveUninitialized: false,
+ 	})
+ );
+ app.use(passport.initialize());
+ app.use(passport.session());
 
 //CONNECT TO MONGODB DATABASE
 

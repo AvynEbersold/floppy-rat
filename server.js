@@ -42,7 +42,7 @@ app.use(
 		cookie: { secure: true },
 	}),
 );
-app.use(passport.session());
+//app.use(passport.session());
 
 //CONNECT TO MONGODB DATABASE
 

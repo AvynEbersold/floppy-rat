@@ -16,6 +16,9 @@ class GameObject extends Rect {
 
     render(canvas) {}
 
+    keyDown(key) {}
+    onClick() {}
+
     withUpdateCallback(callback) {
         this.updateCallback = callback;
         return this;

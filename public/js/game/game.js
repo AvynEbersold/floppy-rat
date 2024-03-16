@@ -37,6 +37,7 @@ function initCanvas() {
     canvasContainer.appendChild(canvas);
 
     console.log("Canvas initted");
+
     return canvas.getContext("2d");
 }
 
@@ -54,6 +55,7 @@ class Game {
         Game.instance = this;
 
         this.canvas = initCanvas();
+        this.lastTimeMs = Date.now();
         this.loop();
     }
 
@@ -78,6 +80,18 @@ class Game {
         });
     }
 
+    keyDown(key) {
+        this.gameObjects.forEach((gameObject) => {
+            gameObject.keyDown(key);
+        });
+    }
+
+    onClick() {
+        this.gameObjects.forEach((gameObject) => {
+            gameObject.onClick();
+        });
+    }
+
     static addGameObject(gameObject) {
         this.instance.gameObjects.push(gameObject);
     }
@@ -88,39 +102,23 @@ const dimensions = generateDimensions(8 / 6);
 
 const game = new Game();
 
-Game.addGameObject(
-    new ImageObject(
-        "images/FB_Background.png",
-        new Rect(0, 0, 1, dimensions.heightToWidthRatio)
-    )
-);
-Game.addGameObject(
-    new TiledImageObject(
-        "images/FB_Mountains.png",
-        new Rect(
-            0,
-            0.5 * dimensions.heightToWidthRatio,
-            1,
-            0.2 * dimensions.heightToWidthRatio
-        )
-    ).withUpdateCallback((obj, deltaTime) => {
-        obj.offset.x -= 0.065 * deltaTime;
-    })
-);
-Game.addGameObject(
-    new TiledImageObject(
-        "images/FB_Ground.png",
-        new Rect(
-            0,
-            0.925 * dimensions.heightToWidthRatio,
-            1,
-            0.2 * dimensions.heightToWidthRatio
-        )
-    ).withUpdateCallback((obj, deltaTime) => {
-        obj.offset.x -= 0.1 * deltaTime;
-    })
-);
+createBackground();
+createMountains();
+createGround();
+// createFpsCounter();
 
-// console.log("Starting game loop...");
+const player = new PlayerObject();
+
+console.log("Starting game loop...");
 // // Not sure why we can't just pass Game.instance.loop directly to setInterval
 setInterval(() => Game.instance.loop(), 1000 / 60);
+
+window.addEventListener("keydown", (event) => {
+    game.keyDown(event.key);
+
+    if (event.key in keybinds.jump) event.preventDefault();
+});
+
+game.canvas.canvas.addEventListener("click", () => {
+    game.onClick();
+});

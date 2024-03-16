@@ -1,22 +1,22 @@
 {
-  "name": "floppyrat",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "Avyn Ebersold",
-  "license": "ISC",
-  "dependencies": {
-    "@types/node": "^18.0.6",
-    "dotenv": "^16.4.5",
-    "express": "^4.18.3",
-    "fs": "^0.0.1-security",
-    "mongodb": "^6.5.0",
-    "node-fetch": "^3.2.6",
-    "openssl": "^2.0.0"
-  },
-  "description": ""
+    "name": "floppyrat",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "Avyn Ebersold",
+    "license": "ISC",
+    "dependencies": {
+        "@types/node": "^18.0.6",
+        "dotenv": "^16.4.5",
+        "express": "^4.18.3",
+        "fs": "^0.0.1-security",
+        "mongodb": "^6.5.0",
+        "node-fetch": "^3.2.6",
+        "openssl": "^2.0.0"
+    },
+    "description": ""
 }

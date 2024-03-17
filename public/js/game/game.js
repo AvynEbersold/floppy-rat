@@ -4,17 +4,28 @@ class Game {
     deltaTimeMs = 0;
     mousePos = new Vector(0, 0);
 
+    score = 0;
+    highScore = localStorage.getItem("highScore") || 0;
+
+    gameplayStarted = false;
+    gameplayStartedCallbacks = [];
+
     constructor() {
         this.canvas = initCanvas();
         this.lastTimeMs = Date.now();
-        this.loop();
     }
 
     loop() {
         this.deltaTimeMs = Date.now() - this.lastTimeMs;
         this.lastTimeMs = Date.now();
+
+        this.canvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        this.render(RenderStep.Early);
         this.update();
-        this.render();
+        this.render(RenderStep.Main);
+        this.render(RenderStep.Late);
+
         requestAnimationFrame(this.loop.bind(this));
     }
 
@@ -24,11 +35,12 @@ class Game {
         });
     }
 
-    render() {
-        this.canvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        this.gameObjects.forEach((gameObject) => {
-            gameObject.render(this.canvas);
-        });
+    render(renderStep) {
+        this.gameObjects
+            .filter((o) => o.renderStep === renderStep)
+            .forEach((gameObject) => {
+                gameObject.render(this.canvas);
+            });
     }
 
     keyDown(key) {
@@ -38,6 +50,8 @@ class Game {
     }
 
     onClick() {
+        this.gameplayStarted = true;
+
         this.gameObjects.forEach((gameObject) => {
             gameObject.onClick();
         });
@@ -62,5 +76,54 @@ class Game {
         console.log("Starting game...");
 
         keyObjects.player = new PlayerObject();
+
+        for (const step in RenderStep) {
+            console.log(`Rendering step: ${step}`);
+            this.render(step);
+        }
+
+        if (this.gameplayStarted) {
+            for (const callback of this.gameplayStartedCallbacks) {
+                callback();
+            }
+
+            this.level.start();
+        }
+    }
+
+    startLoop() {
+        console.log("Starting game loop...");
+        // // Not sure why we can't just pass Game.instance.loop directly to setInterval
+        // setInterval(() => game.loop(), 1000 / config.fps);
+        requestAnimationFrame(this.loop.bind(this));
+
+        for (const callback of this.gameplayStartedCallbacks) {
+            callback();
+        }
+
+        this.level.start();
+    }
+
+    end() {
+        console.log("Ending game...");
+
+        if (this.score > this.highScore) {
+            this.highScore = this.score;
+            localStorage.setItem("highScore", this.highScore);
+        }
+
+        const fader = createFaderObject();
+        const scoreText = createScoreText();
+        const highScoreText = createHighScoreText();
+        createPlayButtonObject(fader, scoreText, highScoreText);
+
+        this.gameplayStartedCallbacks = [];
+
+        this.level = LevelList.level1;
+        this.score = 0;
+    }
+
+    addGameplayStartedCallback(callback) {
+        this.gameplayStartedCallbacks.push(callback);
     }
 }

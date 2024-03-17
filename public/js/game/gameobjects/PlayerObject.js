@@ -6,10 +6,14 @@ class PlayerObject extends ImageObject {
             "images/FB_Player.png",
             new Rect(0.1, 0.3, 0.075, 0.075 * dimensions.heightToWidthRatio)
         );
+
+        this.renderStep = RenderStep.Late;
     }
 
     update(deltaTime) {
         super.update(deltaTime);
+
+        if (!game.gameplayStarted) return;
 
         // Apply gravity
         this.velocity.y -= config.gravity * deltaTime;
@@ -24,7 +28,7 @@ class PlayerObject extends ImageObject {
     render(canvas) {
         // Move rotation towards target rotation, but don't exceed maxRotChange
         const targetRot = -this.velocity.y;
-        const maxRotChange = 0.02; // radians per frame
+        const maxRotChange = config.playerMaxRotChange; // radians per frame
         const prevRot = this.rotation;
 
         if (targetRot > prevRot)
@@ -48,9 +52,9 @@ class PlayerObject extends ImageObject {
     }
 
     overlapCheck() {
-        const toCheck = [keyObjects.ground];
+        const toCheck = [keyObjects.ground, ...keyObjects.pipes];
         for (const obj of toCheck) {
-            if (this.overlaps(obj)) {
+            if (obj.overlaps(this)) {
                 obj.onOverlap(this);
             }
         }
@@ -58,6 +62,10 @@ class PlayerObject extends ImageObject {
 
     die() {
         game.removeGameObject(this);
-        new DeadPlayerObject(new Vector(this.x, this.y), this.rotation);
+        keyObjects.deadPlayer = new DeadPlayerObject(
+            new Vector(this.x, this.y),
+            this.rotation
+        );
+        keyObjects.player = null;
     }
 }

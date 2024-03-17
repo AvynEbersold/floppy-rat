@@ -20,4 +20,31 @@ class Rect {
             this.height * dimensions.width
         );
     }
+
+    isOnScreen() {
+        return (
+            this.x + this.width > 0 &&
+            this.x < 1 &&
+            this.y + this.height > 0 &&
+            this.y < dimensions.heightToWidthRatio
+        );
+    }
+
+    overlaps(other) {
+        if (other instanceof Rect)
+            return (
+                this.x < other.x + other.width &&
+                this.x + this.width > other.x &&
+                this.y < other.y + other.height &&
+                this.y + this.height > other.y
+            );
+
+        if (other instanceof Vector)
+            return (
+                this.x < other.x &&
+                this.x + this.width > other.x &&
+                this.y < other.y &&
+                this.y + this.height > other.y
+            );
+    }
 }

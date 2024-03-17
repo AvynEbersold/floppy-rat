@@ -1,9 +1,17 @@
+const RenderStep = Object.freeze({
+    Early: "early",
+    Main: "main",
+    Late: "late",
+});
+
 /** Base class for all objects in the game. */
 class GameObject extends Rect {
-    updateCallback = [];
-    overlapCallback = [];
-    keyDownCallback = [];
-    onClickCallback = [];
+    updateCallbacks = [];
+    overlapCallbacks = [];
+    keyDownCallbacks = [];
+    onClickCallbacks = [];
+
+    renderStep = RenderStep.Main;
 
     constructor(rect) {
         super(rect.x, rect.y, rect.width, rect.height);
@@ -12,75 +20,57 @@ class GameObject extends Rect {
     }
 
     update(deltaTime) {
-        for (const callback of this.updateCallback) {
+        for (const callback of this.updateCallbacks) {
             callback(this, deltaTime);
         }
     }
 
     render(canvas) {}
 
+    destroy() {
+        game.removeGameObject(this);
+    }
+
     keyDown(key) {
-        for (const callback of this.keyDownCallback) {
+        for (const callback of this.keyDownCallbacks) {
             callback(this, key);
         }
     }
     onClick() {
-        for (const callback of this.onClickCallback) {
+        for (const callback of this.onClickCallbacks) {
             callback(this);
         }
     }
 
     withUpdateCallback(callback) {
-        this.updateCallback.push(callback);
+        this.updateCallbacks.push(callback);
         return this;
     }
 
     withOverlapCallback(callback) {
-        this.overlapCallback.push(callback);
+        this.overlapCallbacks.push(callback);
         return this;
     }
 
     withKeyDownCallback(callback) {
-        this.keyDownCallback.push(callback);
+        this.keyDownCallbacks.push(callback);
         return this;
     }
 
     withOnClickCallback(callback) {
-        this.onClickCallback.push(callback);
+        this.onClickCallbacks.push(callback);
         return this;
     }
 
-    overlaps(other) {
-        if (other instanceof Rect)
-            return (
-                this.x < other.x + other.width &&
-                this.x + this.width > other.x &&
-                this.y < other.y + other.height &&
-                this.y + this.height > other.y
-            );
-
-        if (other instanceof Vector)
-            return (
-                this.x < other.x &&
-                this.x + this.width > other.x &&
-                this.y < other.y &&
-                this.y + this.height > other.y
-            );
+    withRenderStep(renderStep) {
+        this.renderStep = renderStep;
+        return this;
     }
 
     onOverlap(other) {
-        for (const callback of this.overlapCallback) {
+        for (const callback of this.overlapCallbacks) {
             callback(this, other);
         }
-    }
-
-    isOnScreen() {
-        return (
-            this.x + this.width > 0 &&
-            this.x < 1 &&
-            this.y + this.height > 0 &&
-            this.y < dimensions.heightToWidthRatio
-        );
     }
 }
 

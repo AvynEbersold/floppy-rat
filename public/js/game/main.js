@@ -1,20 +1,21 @@
 console.log("main.js loaded");
+
 const dimensions = generateDimensions(8 / 6);
-
 const game = new Game();
-
 const keyObjects = {
     background: createBackground(),
     mountains: createMountains(),
     ground: createGround(),
     player: null,
+    deadPlayer: null,
+    pipes: [],
+    scoreCounter: createScoreCounter(),
+    // fpsCounter: createFpsCounter(),
 };
 
-game.start();
+game.level = LevelList.level1;
 
-console.log("Starting game loop...");
-// // Not sure why we can't just pass Game.instance.loop directly to setInterval
-const loopIntervalId = setInterval(() => game.loop(), 1000 / config.fps);
+game.start();
 
 window.addEventListener("keydown", (event) => {
     console.log(`Keydown: ${event.key}`);
@@ -53,3 +54,5 @@ function getMousePos(canvas, event) {
             canvas.height,
     };
 }
+
+game.startLoop();

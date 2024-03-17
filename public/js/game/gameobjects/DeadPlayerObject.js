@@ -18,16 +18,17 @@ class DeadPlayerObject extends ImageObject {
         this.y -= this.velocity.y * deltaTime;
 
         if (!this.isOnScreen()) {
+            keyObjects.deadPlayer = null;
             game.removeGameObject(this);
-            const fader = createFaderObject();
-            createPlayButtonObject(fader);
+
+            game.end();
         }
     }
 
     render(canvas) {
         // Move rotation towards target rotation, but don't exceed maxRotChange
         const targetRot = -this.velocity.y;
-        const maxRotChange = 0.02; // radians per frame
+        const maxRotChange = config.playerMaxRotChange; // radians per frame
         const prevRot = this.rotation;
 
         if (targetRot > prevRot)

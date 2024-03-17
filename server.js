@@ -8,6 +8,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const passportLocalMongoose = require("passport-local-mongoose");
 
+const devMode = process.argv.includes("--dev");
+console.log("Starting server... Dev mode: " + devMode);
+
 const app = express();
 app.use(express.static("public"));
 app.enable("trust proxy");
@@ -15,8 +18,8 @@ app.enable("trust proxy");
 // use heroku automated certificate management?
 
 var options = {
-	key: fs.readFileSync("privatekey.pem", "utf8"),
-	cert: fs.readFileSync("floppyrat_com.crt", "utf8"),
+    key: fs.readFileSync("privatekey.pem", "utf8"),
+    cert: fs.readFileSync("floppyrat_com.crt", "utf8"),
 };
 
 let port = process.env.PORT || 3000;
@@ -86,5 +89,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, (err) => {
-	console.log(err ? err : "listening on port " + port);
+    console.log(err ? err : "listening on port " + port);
 });

@@ -2,10 +2,11 @@ var express = require("express");
 var https = require("https");
 var http = require("http");
 var fs = require("fs");
-// const mongoose = require('mongoose');
-// const session = require('express-session');
-// const passport = require('passport');
-// const passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require("mongoose");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const devMode = process.argv.includes("--dev");
 console.log("Starting server... Dev mode: " + devMode);
@@ -24,28 +25,28 @@ var options = {
 let port = process.env.PORT || 3000;
 
 function isMobile(req) {
-    if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
-            req.headers["user-agent"]
-        )
-    ) {
-        return true;
-    } else {
-        return false;
-    }
+	if (
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+			req.headers["user-agent"],
+		)
+	) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 //USE COOKIES WITH ENCRYPTION KEY
-// const secret = process.env.SESSION_SECRET;
-// app.use(
-// 	session({
-// 		secret: secret,
-// 		resave: false,
-// 		saveUninitialized: false,
-// 	})
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
+const secret = process.env.SESSION_SECRET;
+// Use session middleware
+ app.use(session({
+	 secret: 'your-secret-key',
+	 resave: false,
+	 saveUninitialized: false
+ }));
+// Initialize Passport
+ app.use(passport.initialize());
+ app.use(passport.session());
 
 //CONNECT TO MONGODB DATABASE
 
@@ -71,20 +72,20 @@ function isMobile(req) {
 // });
 
 app.get("*", (req, res, next) => {
-    if (!devMode && req.protocol != "https") {
-        console.log(req.protocol);
-        res.redirect("https://www.floppyrat.com");
-    } else {
-        next();
-    }
+	if (req.protocol != "https") {
+		console.log(req.protocol);
+		res.redirect("https://www.floppyrat.com");
+	} else {
+		next();
+	}
 });
 
 app.get("/", (req, res) => {
-    if (!isMobile(req)) {
-        res.sendFile(__dirname + "/public/home.html");
-    } else {
-        res.sendFile(__dirname + "/public/mobile.html");
-    }
+	if (!isMobile(req)) {
+		res.sendFile(__dirname + "/public/home.html");
+	} else {
+		res.sendFile(__dirname + "/public/mobile.html");
+	}
 });
 
 app.listen(port, (err) => {

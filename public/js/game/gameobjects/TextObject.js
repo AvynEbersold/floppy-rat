@@ -15,6 +15,9 @@ class TextObject extends GameObject {
 
     render(canvas) {
         canvas.font = `${this.size}px ${this.font}`;
+        canvas.textAlign = this.align;
+        canvas.fillStyle = "white";
+        canvas.strokeStyle = "black";
 
         const targetRect = this.toPixels();
         canvas.fillText(this.text, targetRect.x, targetRect.y);

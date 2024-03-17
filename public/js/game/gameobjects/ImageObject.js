@@ -1,5 +1,5 @@
 /** An object that renders an image. */
-class ImageObject extends GameObject {
+class ImageObject extends VisibleObject {
     image = null;
 
     /** Used to specify what part of the image to draw. Will default to the whole image if not specified. */
@@ -26,6 +26,8 @@ class ImageObject extends GameObject {
     }
 
     render(canvas) {
+        this.preRender(canvas);
+
         const targetRect = this.toPixels();
 
         if (this.sourceSelectionDimensions)
@@ -35,18 +37,20 @@ class ImageObject extends GameObject {
                 this.sourceSelectionDimensions.y,
                 this.sourceSelectionDimensions.width,
                 this.sourceSelectionDimensions.height,
-                targetRect.x,
-                targetRect.y,
+                0,
+                0,
                 targetRect.width,
                 targetRect.height
             );
         else
             canvas.drawImage(
                 this.image,
-                targetRect.x,
-                targetRect.y,
+                0,
+                0,
                 targetRect.width,
                 targetRect.height
             );
+
+        this.postRender(canvas);
     }
 }

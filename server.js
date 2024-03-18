@@ -12,15 +12,9 @@ const app = express();
 app.use(express.static("public"));
 app.enable("trust proxy");
 
-// use heroku automated certificate management?
-
-var options = {
-	key: fs.readFileSync("privatekey.pem", "utf8"),
-	cert: fs.readFileSync("floppyrat_com.crt", "utf8"),
-};
-
 let port = process.env.PORT || 3000;
 
+// mobile redirect *might* not be a good idea b/c Gsearch crawlers get redirected too
 function isMobile(req) {
 	if (
 		/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
@@ -35,9 +29,13 @@ function isMobile(req) {
 
 //USE COOKIES WITH ENCRYPTION KEY
 const secret = process.env.SESSION_SECRET;
+
+// use this:
+// https://medium.com/@mohan.velegacherla/how-to-setup-passport-authentication-in-node-js-with-example-using-express-js-bf44a51e8ca0
+
 // Use session middleware
  app.use(session({
-	 secret: 'your-secret-key',
+	 secret: secret,
 	 resave: false,
 	 saveUninitialized: false
  }));

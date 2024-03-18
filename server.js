@@ -35,7 +35,7 @@ const secret = process.env.SESSION_SECRET;
 
 // Use session middleware
  app.use(session({
-	 secret: secret,
+	 secret: "testing secret",
 	 resave: false,
 	 saveUninitialized: false
  }));

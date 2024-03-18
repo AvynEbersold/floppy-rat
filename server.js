@@ -3,9 +3,9 @@ var https = require("https");
 var http = require("http");
 var fs = require("fs");
 const mongoose = require("mongoose");
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session');
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const session = require("express-session");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
@@ -34,14 +34,16 @@ const secret = process.env.SESSION_SECRET;
 // https://medium.com/@mohan.velegacherla/how-to-setup-passport-authentication-in-node-js-with-example-using-express-js-bf44a51e8ca0
 
 // Use session middleware
- app.use(session({
-	 secret: "testing secret",
-	 resave: false,
-	 saveUninitialized: false
- }));
+app.use(
+	session({
+		secret: "testing secret",
+		resave: false,
+		saveUninitialized: false,
+	}),
+);
 // Initialize Passport
- app.use(passport.initialize());
- app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //CONNECT TO MONGODB DATABASE
 

@@ -13,7 +13,7 @@ const keyObjects = {
     // fpsCounter: createFpsCounter(),
 };
 
-game.level = LevelList.level1;
+game.setLevel(0);
 
 game.start();
 

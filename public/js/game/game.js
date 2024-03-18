@@ -119,11 +119,16 @@ class Game {
 
         this.gameplayStartedCallbacks = [];
 
-        this.level = LevelList.level1;
+        this.setLevel(0);
         this.score = 0;
     }
 
     addGameplayStartedCallback(callback) {
         this.gameplayStartedCallbacks.push(callback);
+    }
+
+    setLevel(index) {
+        this.levelIndex = index;
+        this.level = levelList[index];
     }
 }

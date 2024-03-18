@@ -1,22 +1,22 @@
 class Level {
-    constructor(
-        pipeCount,
-        pipeSpacing,
-        gapSize,
-        gapRange,
-        maxGapYChange,
-        nextLevel = null
-    ) {
+    startCallbacks = [];
+    endCallbacks = [];
+
+    constructor(pipeCount, pipeSpacing, gapSize, gapRange, maxGapYChange) {
         this.pipeCount = pipeCount;
         this.pipeSpacing = pipeSpacing;
         this.pipeGap = gapSize;
         this.gapRange = gapRange;
         this.maxGapYChange = maxGapYChange;
-        this.nextLevel = nextLevel;
     }
 
     start() {
         console.log(`Starting level...`);
+
+        for (const callback of this.startCallbacks) {
+            callback(this);
+        }
+
         this.spawnPipes();
     }
 
@@ -64,21 +64,45 @@ class Level {
     }
 
     swapToNextLevel() {
+        for (const callback of game.level.endCallbacks) {
+            callback(game.level);
+        }
+
         console.log("Swapping to next level...");
-        game.level = game.level.nextLevel ?? game.level;
+        game.setLevel(Math.min(game.levelIndex + 1, levelList.length - 1));
         game.level.start();
+    }
+
+    withStartCallback(callback) {
+        this.startCallbacks.push(callback);
+        return this;
+    }
+
+    withEndCallback(callback) {
+        this.endCallbacks.push(callback);
+        return this;
     }
 }
 
-class LevelList {
-    static level3 = new Level(5, 0.25, 0.4, [0.1, 0.5], 0.2);
-    static level2 = new Level(
-        5,
-        0.4,
-        0.275,
-        [0.075, 0.6],
-        0.4,
-        LevelList.level3
-    );
-    static level1 = new Level(5, 0.5, 0.3, [0.1, 0.5], 0.4, LevelList.level2);
-}
+const levelList = [
+    new Level(5, 0.5, 0.3, [0.1, 0.5], 0.4),
+    new Level(5, 0.4, 0.275, [0.075, 0.6], 0.4),
+    new Level(5, 0.25, 0.4, [0.1, 0.5], 0.2),
+    new Level(5, 0.5, 0.3, [0.1, 0.5], 0.4)
+        .withStartCallback((level) => {
+            config.gravity *= -1;
+            config.jumpForce *= -1;
+        })
+        .withEndCallback((level) => {
+            config.gravity *= -1;
+            config.jumpForce *= -1;
+        }),
+    new Level(1, 0.5, 0.3, [0.1, 0.5], 0.4)
+        .withStartCallback((level) => {
+            config.scrollSpeed *= 4;
+        })
+        .withEndCallback((level) => {
+            config.scrollSpeed /= 4;
+        }),
+    new Level(5, 0.4, 0.275, [0.075, 0.6], 0.4),
+];

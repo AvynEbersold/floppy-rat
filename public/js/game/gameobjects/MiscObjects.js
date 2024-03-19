@@ -104,7 +104,7 @@ function createHighScoreText() {
 function createScoreCounter() {
     new TextObject(0.97, 0.03, "0", { size: 40, align: "right" })
         .withUpdateCallback((obj, deltaTime) => {
-            obj.text = game.score;
+            obj.text = `${game.score} / ${game.levelIndex + 1}`;
         })
         .withRenderStep(RenderStep.Late);
 }

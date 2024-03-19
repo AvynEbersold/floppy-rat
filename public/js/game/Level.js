@@ -95,6 +95,9 @@ const levelList = [
     new Level(5, 0.4, 0.275, [0.075, 0.325], 0.4),
     new Level(5, 0.25, 0.4, [0.0, 0.3], 0.2),
     new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4)
+        .withStartCallback((level) => config.scrollSpeed *= 1.75)
+        .withEndCallback((level) => config.scrollSpeed /= 1.75),
+    new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4)
         .withStartCallback((level) => {
             config.gravity *= -1;
             config.jumpForce *= -1;

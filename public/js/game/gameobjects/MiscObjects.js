@@ -24,9 +24,9 @@ function createGround() {
         "images/FB_Ground.png",
         new Rect(
             0,
-            0.925 * dimensions.heightToWidthRatio,
+            0.85 * dimensions.heightToWidthRatio,
             1,
-            0.2 * dimensions.heightToWidthRatio
+            0.15 * dimensions.heightToWidthRatio
         )
     )
         .withUpdateCallback(scrollLeftUpdateCallback(config.scrollSpeed))

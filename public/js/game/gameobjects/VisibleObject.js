@@ -28,8 +28,9 @@ class VisibleObject extends GameObject {
         const targetRect = this.toPixels();
 
         canvas.save();
-        canvas.translate(targetRect.x, targetRect.y);
+        canvas.translate(targetRect.x + targetRect.width / 2, targetRect.y + targetRect.height / 2);
         canvas.rotate(this.rotation);
+        canvas.translate(-targetRect.width / 2, -targetRect.height / 2);
         canvas.globalAlpha = this.color.a;
     }
 

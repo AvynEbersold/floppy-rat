@@ -72,7 +72,7 @@ class Level {
     }
 
     swapToNextLevel() {
-        this.end();
+        game.level.end();
 
         console.log("Swapping to next level...");
         game.setLevel(Math.min(game.levelIndex + 1, levelList.length - 1));

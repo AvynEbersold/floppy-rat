@@ -1,10 +1,10 @@
 class DeadPlayerObject extends ImageObject {
     velocity = new Vector(0, config.jumpForce);
 
-    constructor(pos, rot) {
+    constructor(rect, rot) {
         super(
             "images/FB_Player.png",
-            new Rect(pos.x, pos.y, 0.075, 0.075 * dimensions.heightToWidthRatio)
+            rect
         );
         this.rotation = rot;
     }

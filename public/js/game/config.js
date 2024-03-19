@@ -1,7 +1,8 @@
 const config = {
     fps: 60,
-    gravity: 1.2,
-    jumpForce: 0.45,
+    // Specifically 123 BPM
+    gravity: 2.9,
+    jumpForce: 0.75,
     scrollSpeed: 0.1,
     playerMaxRotChange: 0.3,
 };

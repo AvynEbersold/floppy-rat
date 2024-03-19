@@ -1,107 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
+	<head>
+		<!-- <GoogleTagAnalytics> -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-H18EGSZGWD"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
 
-<head>
-	<!-- <GoogleTagAnalytics> -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-H18EGSZGWD"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+			gtag("config", "G-H18EGSZGWD");
+		</script>
+		<!-- </GoogleTagAnalytics> -->
 
-	  gtag('config', 'G-H18EGSZGWD');
-	</script>
-	<!-- </GoogleTagAnalytics> -->
-	
-	<!-- <GoogleAdsenseTag> -->
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8234960759619801"
-		 crossorigin="anonymous"></script>
-	<!-- </GoogleAdsenseTag> -->
-	
-	<meta charset="utf-8">
-	<meta author="Avyn Ebersold, Ella Hart">
-	<meta keywords="game, floppy, rat, avyn, ebersold">
-	<meta description="floppy rat. need i say more?">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="robots" content="all">
-	<title>floppy rat!</title>
-	<!-- External Links -->
-	<link rel="stylesheet" href="css/styles.css">
-	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
-	<script src="js/index.js" charset="utf-8"></script>
-</head>
+		<!-- <GoogleAdsenseTag> -->
+		<script
+			async
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8234960759619801"
+			crossorigin="anonymous"
+		></script>
+		<!-- </GoogleAdsenseTag> -->
 
-<body>
-	<noscript class="warning" id="js-warning">
-		<h1>javascript not enabled :(</h1>
-		<p>to play this game, go into your browsers settings page and enable javascript</p>
-	</noscript>
-	<div class="canvas-div">
-		<script src="js/game.js" charset="utf-8"></script>
-	</div>
-	<div class="main-container">
+		<meta charset="utf-8" />
+		<meta author="Avyn Ebersold, Ella Hart" />
+		<meta keywords="game, floppy, rat, avyn, ebersold" />
+		<meta description="floppy rat. need i say more?" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="all" />
+		<title>floppy rat!</title>
+		<!-- External Links -->
+		<link rel="stylesheet" href="css/styles.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="js/index.js" charset="utf-8"></script>
+	</head>
 
-		<div class="tabs">
-		  <input class="input" name="tabs" type="radio" id="tab-1" checked="checked"/>
-		  <label class="label" for="tab-1">how to play</label>
-		  <div class="panel">
-			<h1>how to play</h1>
-			<ol>
-				<li>click, press space, or press the up key to jump</li>
-				<li>avoid all the pipes and get as far as you can</li>
-				<li>enjoy!</li>
-			</ol>
-		  </div>
-		  <input class="input" name="tabs" type="radio" id="tab-2"/>
-		  <label class="label" for="tab-2">about</label>
-		  <div class="panel">
-			<h1>about</h1>
-			  <p>this game is an adaptation of an earlier game, flapper burger, made by the same programmer. the game is still under development and will have major changes over time. below are some planned updates:</p>
-			  <ul>
-				  <li>music/sfx!</li>
-				  <li>different areas w/ different pipe behaviors</li>
-				  <li>account system to save progress</li>
-				  <li>currency earned by getting farther which can be redeemed for different rat(ish) skins</li>
-				  <li>boss battles!</li>
-			  </ul>
-			  <br><p>floppy rat is still under development at <b>https://github.com/AvynEbersold/floppy-rat</b>. <em>any contributions would be welcome!</em></p>
-		  </div>
-			<input class="input" name="tabs" type="radio" id="tab-3"/>
-			  <label class="label" for="tab-3">leaderboard</label>
-			  <div class="panel">
-				<h1>leaderboard</h1>
-				  <p>coming soon!</p>
-			  </div>
-			<input class="input" name="tabs" type="radio" id="tab-4"/>
-			  <label class="label" for="tab-4">account</label>
-			  <div class="panel">
-				<h1>account</h1>
-				  <p>coming soon!</p>
-			  </div>
-			<input class="input" name="tabs" type="radio" id="tab-5"/>
-			  <label class="label" for="tab-5">credits</label>
-			  <div class="panel">
-				<h1>credits</h1>
-				<p><b>avyn ebersold</b>: programming & design</p>
-				<p><b>ella hart</b>: art & soul</p>
-				<p><b>renato dell'osso</b>: fixing all the code</p>
-				<p><b>meg lawrence</b>: naming the game floppy rat</p>
-				<p><b>kaegan lucas</b>: getting wr of 321!</p>
-				<p><b>rachana huy</b>: naming the rat norman</p>
-				<p><b>michael kilpatrick</b>: moral support</p>
-				<p><b>owen beck</b>: (de)constructive criticism</p>
-			  </div>
-		  <!-- <input class="input" name="tabs" type="radio" id="tab-3"/>
+	<body>
+		<noscript class="warning" id="js-warning">
+			<h1>javascript not enabled :(</h1>
+			<p>
+				to play this game, go into your browsers settings page and
+				enable javascript
+			</p>
+		</noscript>
+		<div class="canvas-div">
+			<script src="js/game.js" charset="utf-8"></script>
+		</div>
+		<div class="main-container">
+			<div class="tabs">
+				<input
+					class="input"
+					name="tabs"
+					type="radio"
+					id="tab-1"
+					checked="checked"
+				/>
+				<label class="label" for="tab-1">how to play</label>
+				<div class="panel">
+					<h1>how to play</h1>
+					<ol>
+						<li>click, press space, or press the up key to jump</li>
+						<li>avoid all the pipes and get as far as you can</li>
+						<li>enjoy!</li>
+					</ol>
+				</div>
+				<input class="input" name="tabs" type="radio" id="tab-2" />
+				<label class="label" for="tab-2">about</label>
+				<div class="panel">
+					<h1>about</h1>
+					<p>
+						this game is an adaptation of an earlier game, flapper
+						burger, made by the same programmer. the game is still
+						under development and will have major changes over time.
+						below are some planned updates:
+					</p>
+					<ul>
+						<li>music/sfx!</li>
+						<li>different areas w/ different pipe behaviors</li>
+						<li>account system to save progress</li>
+						<li>
+							currency earned by getting farther which can be
+							redeemed for different rat(ish) skins
+						</li>
+						<li>boss battles!</li>
+					</ul>
+					<br />
+					<p>
+						floppy rat is still under development at
+						<b>https://github.com/AvynEbersold/floppy-rat</b>.
+						<em>any contributions would be welcome!</em>
+					</p>
+				</div>
+				<input class="input" name="tabs" type="radio" id="tab-3" />
+				<label class="label" for="tab-3">leaderboard</label>
+				<div class="panel">
+					<h1>leaderboard</h1>
+					<p>coming soon!</p>
+				</div>
+				<input class="input" name="tabs" type="radio" id="tab-4" />
+				<label class="label" for="tab-4">account</label>
+				<div class="panel">
+					<h1>account</h1>
+					<p>coming soon!</p>
+					<!-- <br>
+					<form action="/auth" method="post">
+						<input
+							name="username"
+							id="username"
+							placeholder="username"
+							type="text"
+						/>
+						<input
+							name="password"
+							id="password"
+							placeholder="password"
+							type="text"
+						/>
+						<button type="submit" formmethod="post">
+							login
+						</button>
+					</form> -->
+				</div>
+				<input class="input" name="tabs" type="radio" id="tab-5" />
+				<label class="label" for="tab-5">credits</label>
+				<div class="panel">
+					<h1>credits</h1>
+					<p><b>avyn ebersold</b>: programming & design</p>
+					<p><b>ella hart</b>: art & soul</p>
+					<p><b>renato dell'osso</b>: fixing all the code</p>
+					<p><b>meg lawrence</b>: naming the game floppy rat</p>
+					<p><b>kaegan lucas</b>: getting wr of 321!</p>
+					<p><b>rachana huy</b>: naming the rat norman</p>
+					<p><b>michael kilpatrick</b>: moral support</p>
+					<p><b>owen beck</b>: (de)constructive criticism</p>
+				</div>
+				<!-- <input class="input" name="tabs" type="radio" id="tab-3"/>
 		  <label class="label" for="tab-3">Tekno Match</label>
 		  <div class="panel">
 			<h1>Tekno Match</h1>
 			<p>Tekno Match (Citrus ×clementina) is a hybrid between a mandarin orange and a sweet orange, so named in 1902. The exterior is a deep orange colour with a smooth, glossy appearance. Clementines can be separated into 7 to 14 segments. Similarly to tangerines, they tend to be easy to peel.</p>
 		  </div> -->
+			</div>
 		</div>
-	</div>
-	<div class="footer">
-		<p><small>copyright rats 2024</small></p>
-	</div>
-</body>
-
+		<div class="footer">
+			<p><small>copyright rats 2024</small></p>
+		</div>
+	</body>
 </html>

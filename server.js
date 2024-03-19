@@ -1,4 +1,5 @@
 var express = require("express");
+var bodyParser = require('body-parser')
 var https = require("https");
 var http = require("http");
 var fs = require("fs");
@@ -12,6 +13,9 @@ const app = express();
 app.use(express.static("public"));
 app.enable("trust proxy");
 
+app.use(bodyParser.urlencoded({ extended: false })) 
+app.use(bodyParser.json());
+
 let port = process.env.PORT || 3000;
 
 // mobile redirect *might* not be a good idea b/c Gsearch crawlers get redirected too
@@ -24,6 +28,14 @@ function isMobile(req) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		res.redirect("/");
 	}
 }
 
@@ -68,10 +80,33 @@ app.use(passport.session());
 // 	}]
 // });
 
+const users = [{ id: 1, username: "user", password: "password" }];
+
+passport.use(
+	new LocalStrategy((username, password, done) => {
+		const user = users.find((u) => u.username === username);
+		if (!user) {
+			return done(null, false, { message: "Incorrect username." });
+		}
+		if (user.password !== password) {
+			return done(null, false, { message: "Incorrect password." });
+		}
+		return done(null, user);
+	}),
+);
+
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
+passport.deserializeUser((id, done) => {
+	const user = users.find((u) => u.id === id);
+	done(null, user);
+});
+
 app.get("*", (req, res, next) => {
 	if (req.protocol != "https") {
 		console.log(req.protocol);
-		res.redirect("https://www.floppyrat.com");
+		res.redirect("https://www.floppyrat.com" + req.url);
 	} else {
 		next();
 	}
@@ -83,6 +118,26 @@ app.get("/", (req, res) => {
 	} else {
 		res.sendFile(__dirname + "/public/mobile.html");
 	}
+});
+
+app.get("/account", ensureAuthenticated, (req, res) => {
+	res.send("your account page");
+});
+
+app.get("/mobile", (req, res) => {
+	// testing route for if people REALLY want to try the game on mobile
+	res.sendFile(__dirname + "/public/home.html");
+});
+
+app.post("/auth", (req, res) => {
+	console.log("trying to authenticate");
+	console.log(req.body.username);
+	console.log(req.body.password);
+	passport.authenticate("local", {
+		successRedirect: "/",
+		failureRedirect: "/",
+		failureFlash: true,
+	});
 });
 
 app.listen(port, (err) => {

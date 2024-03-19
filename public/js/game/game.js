@@ -44,6 +44,10 @@ class Game {
     }
 
     keyDown(key) {
+        if (!this.gameplayStarted)
+            this.level.start();
+        this.gameplayStarted = true;
+        
         this.gameObjects.forEach((gameObject) => {
             gameObject.keyDown(key);
         });
@@ -67,7 +71,8 @@ class Game {
     }
 
     addGameObject(gameObject) {
-        this.gameObjects.push(gameObject);
+        if (gameObject instanceof GameObject)
+            this.gameObjects.push(gameObject);
     }
 
     removeGameObject(gameObject) {

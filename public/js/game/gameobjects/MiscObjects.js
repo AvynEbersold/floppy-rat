@@ -64,6 +64,16 @@ function createFaderObject() {
 }
 
 function createPlayButtonObject(fader, scoreText, highScoreText) {
+    const newGame = (obj) => {
+        game.removeGameObject(obj);
+        game.removeGameObject(fader);
+        game.removeGameObject(scoreText);
+        game.removeGameObject(highScoreText);
+
+        game.start();
+    };
+
+
     return new ImageObject(
         "images/FB_Start.png",
         new Rect(0.4, (dimensions.heightToWidthRatio - 0.2) / 2, 0.2, 0.2)
@@ -72,15 +82,9 @@ function createPlayButtonObject(fader, scoreText, highScoreText) {
             obj.color.a = obj.overlaps(game.mousePos) ? 0.5 : 1;
         })
         .withOnClickCallback((obj) => {
-            if (obj.overlaps(game.mousePos)) {
-                game.removeGameObject(obj);
-                game.removeGameObject(fader);
-                game.removeGameObject(scoreText);
-                game.removeGameObject(highScoreText);
-
-                game.start();
-            }
-        });
+            if (obj.overlaps(game.mousePos)) newGame(obj);
+        })
+        .withKeyDownCallback((obj, key) => newGame(obj));
 }
 
 function createScoreText() {

@@ -68,6 +68,8 @@ class PlayerObject extends ImageObject {
     }
 
     die() {
+        game.level.end();
+
         game.removeGameObject(this);
         keyObjects.deadPlayer = new DeadPlayerObject(
             new Vector(this.x, this.y),

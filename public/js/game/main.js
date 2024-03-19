@@ -31,7 +31,7 @@ window.addEventListener("keydown", (event) => {
 
     if (keybinds.quit.includes(event.key)) {
         console.log("Quitting game...");
-        clearInterval(loopIntervalId);
+        keyObjects.player?.die();
     }
 });
 

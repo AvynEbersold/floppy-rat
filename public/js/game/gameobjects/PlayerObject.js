@@ -42,7 +42,7 @@ class PlayerObject extends ImageObject {
     }
 
     keyDown(key) {
-        if (key in keybinds.jump) this.jump();
+        if (game.gameplayStarted && keybinds.jump.includes(key)) this.jump();
     }
 
     onClick() {

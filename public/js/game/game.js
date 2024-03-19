@@ -50,6 +50,8 @@ class Game {
     }
 
     onClick() {
+        if (!this.gameplayStarted)
+            this.level.start();
         this.gameplayStarted = true;
 
         this.gameObjects.forEach((gameObject) => {
@@ -101,7 +103,8 @@ class Game {
             callback();
         }
 
-        this.level.start();
+        if (this.gameplayStarted)
+            this.level.start();
     }
 
     end() {

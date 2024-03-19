@@ -4,7 +4,7 @@ class PlayerObject extends ImageObject {
     constructor() {
         super(
             "images/FB_Player.png",
-            new Rect(0.1, 0.3, 0.075, 0.075 * dimensions.heightToWidthRatio)
+            new Rect(0.5 - (0.075 / 2), 0.3, 0.075, 0.075 * dimensions.heightToWidthRatio)
         );
 
         this.renderStep = RenderStep.Late;

@@ -1,6 +1,8 @@
 class PlayerObject extends ImageObject {
     velocity = new Vector(0, 0);
 
+    jumpOverload = null;
+
     constructor() {
         super(
             "images/FB_Player.png",
@@ -48,6 +50,11 @@ class PlayerObject extends ImageObject {
     }
 
     jump() {
+        if (this.jumpOverload) {
+            this.jumpOverload(this);
+            return;
+        }
+        
         this.velocity.y = config.jumpForce;
     }
 

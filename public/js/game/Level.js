@@ -100,8 +100,8 @@ const levelList = [
     new Level(1, 0.5, 0.3, [0.1, 0.3], 0.4)
         .withStartCallback((level) => config.scrollSpeed *= 4)
         .withEndCallback((level) => config.scrollSpeed /= 4),
-    new Level(5, 0.4, 0.275, [0.075, 0.3], 0.4),   
-    new Level(5, 0.4, 0.275, [0.075, 0.3], 0.4)
+    new Level(5, 0.4, 0.275, [0.075, 0.3], 0.4),
+    new Level(3, 0.4, 0.4, [0.075, 0.3], 0.4)
         .withStartCallback((level) => keyObjects.player.jumpOverload = (player) => {
             config.gravity *= -1;
             player.velocity.y = 0;

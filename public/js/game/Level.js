@@ -102,10 +102,12 @@ const levelList = [
         .withStartCallback((level) => {
             config.gravity *= -1;
             config.jumpForce *= -1;
+          //flip player
         })
         .withEndCallback((level) => {
             config.gravity *= -1;
             config.jumpForce *= -1;
+          //flip player
         }),
     new Level(1, 0.5, 0.3, [0.1, 0.3], 0.4)
         .withStartCallback((level) => config.scrollSpeed *= 4)

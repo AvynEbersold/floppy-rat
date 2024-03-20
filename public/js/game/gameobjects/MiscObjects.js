@@ -10,7 +10,7 @@ function createMountains() {
         "images/FB_Mountains.png",
         new Rect(
             0,
-            0.5 * dimensions.heightToWidthRatio,
+            0.3 * dimensions.heightToWidthRatio,
             1,
             0.2 * dimensions.heightToWidthRatio
         )

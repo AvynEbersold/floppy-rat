@@ -29,7 +29,7 @@ function createGround() {
             0.15 * dimensions.heightToWidthRatio
         )
     )
-        .withUpdateCallback(scrollLeftUpdateCallback(config.scrollSpeed))
+        .withUpdateCallback(scrollLeftUpdateCallback(config.scrollSpeed*2))
         .withOverlapCallback((obj, other) => {
             if (other instanceof PlayerObject) {
                 other.die();

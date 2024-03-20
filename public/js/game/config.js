@@ -4,7 +4,7 @@ const config = {
     gravity: 2.9,
     jumpForce: 0.75,
     scrollSpeed: 0.1,
-    playerMaxRotChange: 0.3,
+    playerMaxRotChange: 1000,
 };
 
 const keybinds = {

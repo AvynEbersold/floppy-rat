@@ -36,7 +36,7 @@ class Level {
         let pipeX = 1.2;
 
         for (let i = 0; i < this.pipeCount; i++) {
-            const pipe = new PipeObject(pipeX, pipeGapY, this.pipeGap);
+            const pipe = new PipeObject(pipeX, pipeGapY, this.pipeGap,game.globalGameLoop);
             game.addGameObject(pipe);
 
             pipeX += this.pipeSpacing;

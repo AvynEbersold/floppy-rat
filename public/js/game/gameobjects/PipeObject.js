@@ -2,12 +2,12 @@ class PipeObject extends ImageObject {
     passedByPlayer = false;
     passedByPlayerCallbacks = [];
 
-    constructor(x, gapY, gapHeight) {
+    constructor(x, gapY, gapHeight,gameLoop) {
         super("images/FB_Tubes.png", new Rect(x, 0, 0.15, gapY));
 
         this.gapY = gapY;
         this.gapHeight = gapHeight;
-
+        this.gameLoop = gameLoop;
         keyObjects.pipes.push(this);
 
         this.updateCallbacks.push(scrollLeftUpdateCallback(config.scrollSpeed));
@@ -15,7 +15,9 @@ class PipeObject extends ImageObject {
 
     update(deltaTime) {
         super.update(deltaTime);
-
+      if(this.gameLoop != game.globalGameLoop){
+        this.destroy();
+      }
         if (!keyObjects.player && !keyObjects.deadPlayer) {
             this.gapY -= deltaTime;
             this.gapHeight += deltaTime * 2;

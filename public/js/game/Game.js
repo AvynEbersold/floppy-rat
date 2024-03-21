@@ -2,6 +2,7 @@ class Game {
     gameObjects = [];
     lastTimeMs = 0;
     deltaTimeMs = 0;
+    globalGameLoop = 0;
     mousePos = new Vector(0, 0);
 
     score = 0;
@@ -81,7 +82,8 @@ class Game {
 
     start() {
         console.log("Starting game...");
-
+        game.globalGameLoop++;
+        console.log(game.globalGameLoop);
         keyObjects.player = new PlayerObject();
 
         for (const step in RenderStep) {

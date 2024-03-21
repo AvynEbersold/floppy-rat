@@ -83,7 +83,7 @@ class Game {
     start() {
         console.log("Starting game...");
         game.globalGameLoop++;
-        console.log(game.globalGameLoop);
+        console.log("Game Loop:" + game.globalGameLoop);
         keyObjects.player = new PlayerObject();
 
         for (const step in RenderStep) {

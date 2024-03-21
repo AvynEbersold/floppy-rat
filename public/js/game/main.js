@@ -8,6 +8,7 @@ const keyObjects = {
     ground: createGround(),
     player: null,
     deadPlayer: null,
+    flippedPlayer: null,
     pipes: [],
     scoreCounter: createScoreCounter(),
     // fpsCounter: createFpsCounter(),
@@ -32,6 +33,7 @@ window.addEventListener("keydown", (event) => {
     if (keybinds.quit.includes(event.key)) {
         console.log("Quitting game...");
         keyObjects.player?.die();
+        keyObjects.flippedPlayer?.die();
     }
 });
 

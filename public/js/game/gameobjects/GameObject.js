@@ -76,7 +76,7 @@ class GameObject extends Rect {
 
 function scrollLeftUpdateCallback(speed) {
     return (obj, deltaTime) => {
-        if (!keyObjects.player && keyObjects.deadPlayer) return;
+        if (!keyObjects.player && !keyObjects.flippedPlayer && keyObjects.deadPlayer) return;
 
         if (obj instanceof TiledImageObject) obj.offset.x -= speed * deltaTime;
         else obj.x -= speed * deltaTime;

@@ -1,11 +1,11 @@
-class PlayerObject extends ImageObject {
+class FlippedPlayerObject extends ImageObject {
     velocity = new Vector(0, 0);
 
     jumpOverload = null;
 
     constructor() {
         super(
-            "images/FB_Player.png",
+            "images/FB_FlippedPlayer.png",
             new Rect(0.5 - (0.075 / 2), 0.3, 0.1, 0.1 * dimensions.heightToWidthRatio)
         );
 
@@ -54,7 +54,7 @@ class PlayerObject extends ImageObject {
             this.jumpOverload(this);
             return;
         }
-        
+
         this.velocity.y = config.jumpForce;
     }
 
@@ -74,14 +74,14 @@ class PlayerObject extends ImageObject {
             this,
             this.rotation
         );
-        keyObjects.player = null;
+        keyObjects.flippedPlayer = null;
     }
     flip(){
       game.removeGameObject(this);
-      keyObjects.flippedPlayer = new FlippedPlayerObject(
+      keyObjects.player = new PlayerObject(
         this,
         this.rotation
       );
-      keyObjects.player = null;
+      keyObjects.flippedPlayer = null;
     }
 }

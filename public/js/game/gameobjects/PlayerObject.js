@@ -69,19 +69,12 @@ class PlayerObject extends ImageObject {
 
     die() {
         game.level.end();
+
         game.removeGameObject(this);
         keyObjects.deadPlayer = new DeadPlayerObject(
             this,
             this.rotation
         );
         keyObjects.player = null;
-    }
-    flip(){
-      game.removeGameObject(this);
-      keyObjects.flippedPlayer = new FlippedPlayerObject(
-        this,
-        this.rotation
-      );
-      keyObjects.player = null;
     }
 }

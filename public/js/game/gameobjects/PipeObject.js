@@ -18,7 +18,7 @@ class PipeObject extends ImageObject {
       if(this.gameLoop != game.globalGameLoop){
         this.destroy();
       }
-        if (!keyObjects.player && !keyObjects.flippedPlayer && !keyObjects.deadPlayer) {
+        if (!keyObjects.player && !keyObjects.deadPlayer) {
             this.gapY -= deltaTime;
             this.gapHeight += deltaTime * 2;
 
@@ -35,10 +35,9 @@ class PipeObject extends ImageObject {
 
         // Make sure to check if the player object exists first!
         if (
-            ((keyObjects.player || keyObjects.flippedPlayer) && 
-            (this.x + this.width < keyObjects.player?.x || 
-             this.x + this.width < keyObjects.flippedPlayer?.x) &&
-            !this.passedByPlayer)
+            keyObjects.player &&
+            this.x + this.width < keyObjects.player.x &&
+            !this.passedByPlayer
         ) {
             this.passedByPlayer = true;
             game.score++;

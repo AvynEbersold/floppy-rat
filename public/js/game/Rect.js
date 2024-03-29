@@ -30,7 +30,7 @@ class Rect {
         );
     }
 
-    overlaps(other) { 
+    overlaps(other) {
         if (other instanceof Rect)
             return (
                 this.x < other.x + other.width &&

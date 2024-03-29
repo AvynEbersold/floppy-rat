@@ -1,6 +1,6 @@
 class PlayerObject extends ImageObject {
     velocity = new Vector(0, 0);
-
+    image = null;
     jumpOverload = null;
 
     constructor() {
@@ -77,4 +77,17 @@ class PlayerObject extends ImageObject {
         );
         keyObjects.player = null;
     }
+  flip() {
+    if(super.image == "FBPlayer.png"){
+      super(
+          "images/Flipped_Rat.png",
+          new Rect(0.5 - (0.075 / 2), 0.3, 0.1, 0.1 * dimensions.heightToWidthRatio)
+      );
+    } else{
+      super(
+          "images/FB_Player.png",
+          new Rect(0.5 - (0.075 / 2), 0.3, 0.1, 0.1 * dimensions.heightToWidthRatio)
+      );
+    }
+  }
 }

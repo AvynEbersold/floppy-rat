@@ -3,7 +3,7 @@ class PipeObject extends ImageObject {
     passedByPlayerCallbacks = [];
 
     constructor(x, gapY, gapHeight,gameLoop) {
-        super("images/FB_Tubes.png", new Rect(x, 0, 0.15, gapY));
+        super("images/FB_Tubes.png", new Rect(x, 0, 0.20, gapY));
 
         this.gapY = gapY;
         this.gapHeight = gapHeight;

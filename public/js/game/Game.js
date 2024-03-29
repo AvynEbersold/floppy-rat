@@ -85,6 +85,7 @@ class Game {
         game.globalGameLoop++;
         console.log("Game Loop:" + game.globalGameLoop);
         keyObjects.player = new PlayerObject();
+		keyObjects.scoreCounter.withRenderStep(RenderStep.Late);
 
         for (const step in RenderStep) {
             console.log(`Rendering step: ${step}`);
@@ -126,6 +127,7 @@ class Game {
         const scoreText = createScoreText();
         const highScoreText = createHighScoreText();
         createPlayButtonObject(fader, scoreText, highScoreText);
+		keyObjects.scoreCounter.withRenderStep("none");
 
         this.gameplayStartedCallbacks = [];
 

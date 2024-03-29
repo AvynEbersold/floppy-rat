@@ -31,7 +31,7 @@ function createGround() {
     )
         .withUpdateCallback(scrollLeftUpdateCallback(config.scrollSpeed*2))
         .withOverlapCallback((obj, other) => {
-            if (other instanceof PlayerObject || other instanceof FlippedPlayerObject) {
+            if (other instanceof PlayerObject) {
                 other.die();
             }
         });

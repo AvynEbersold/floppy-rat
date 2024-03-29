@@ -33,13 +33,11 @@ class Rect {
     overlaps(other) { 
         if (other instanceof Rect)
             return (
-              
                 this.x < other.x + other.width &&
                 this.x + this.width > other.x &&
                 this.y < other.y + other.height &&
                 this.y + this.height > other.y
             );
-      
 
         if (other instanceof Vector)
             return (

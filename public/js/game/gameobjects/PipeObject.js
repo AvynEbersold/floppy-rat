@@ -136,7 +136,7 @@ class PipeObject extends ImageObject {
     }
 
     onOverlap(other) {
-        if (other instanceof PlayerObject || other instanceof FlippedPlayerObject) {
+        if (other instanceof PlayerObject) {
             other.die();
         }
     }

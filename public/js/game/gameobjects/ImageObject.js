@@ -29,7 +29,7 @@ class ImageObject extends VisibleObject {
         this.preRender(canvas);
 
         const targetRect = this.toPixels();
-
+        
         if (this.sourceSelectionDimensions)
             canvas.drawImage(
                 this.image,

@@ -40,7 +40,14 @@ class Game {
         this.gameObjects
             .filter((o) => o.renderStep === renderStep)
             .forEach((gameObject) => {
+                if(gameObject == Game.keyObjects.playerObject){
+                  context.save();
+                  context.scale(-1, 1);
+                  gameObject.render(this.canvas);
+                  
+                }
                 gameObject.render(this.canvas);
+                
             });
     }
 

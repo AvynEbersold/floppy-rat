@@ -88,21 +88,21 @@ function createPlayButtonObject(fader, scoreText, highScoreText) {
 }
 
 function createScoreText() {
-    return new TextObject(0.5, 0.55, `score: ${game.score}`, {
-        size: 40,
+    return new TextObject(0.5, 0.525, `Score: ${game.score}`, {
+        size: 50,
         align: "center",
     });
 }
 
 function createHighScoreText() {
-    return new TextObject(0.5, 0.6, `high score: ${game.highScore}`, {
+    return new TextObject(0.5, 0.575, `High Score: ${game.highScore}`, {
         size: 40,
         align: "center",
     });
 }
 
 function createScoreCounter() {
-    new TextObject(0.97, 0.05, "0", { size: 35, align: "right" })
+    new TextObject(0.97, 0.03, "0", { size: 40, align: "right" })
         .withUpdateCallback((obj, deltaTime) => {
             obj.text = `${game.score} / ${game.levelIndex + 1}`;
         })

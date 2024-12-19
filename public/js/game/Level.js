@@ -92,36 +92,36 @@ class Level {
 
 const levelList = [
   //(pipeCount, pipeSpacing, gapSize, gapRange, maxGapYChange)
-    //new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4),
+    new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4),
     //new Level(5, 0.4, 0.275, [0.075, 0.325], 0.4),
-    new Level(5, 0.25, 0.4, [0.0, 0.3], 0.2),
+    // new Level(5, 0.25, 0.4, [0.0, 0.3], 0.2),
     //new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4)
     //    .withStartCallback((level) => config.scrollSpeed *= 1.75)
      //   .withEndCallback((level) => config.scrollSpeed /= 1.75),
-    new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4)
-        .withStartCallback((level) => {
-            config.gravity *= -1;
-            config.jumpForce *= -1;
-            keyObjects.player.flip()
-          //flip player
-        })
-        .withEndCallback((level) => {
-            config.gravity *= -1;
-            config.jumpForce *= -1;
-            keyObjects.player.flip()
-          //flip player
-        }),
-    new Level(1, 0.5, 0.3, [0.1, 0.3], 0.4)
-        .withStartCallback((level) => config.scrollSpeed *= 4)
-        .withEndCallback((level) => config.scrollSpeed /= 4),
-    new Level(5, 0.4, 0.275, [0.075, 0.3], 0.4),
-    new Level(3, 0.4, 0.4, [0.075, 0.3], 0.4)
-        .withStartCallback((level) => keyObjects.player.jumpOverload = (player) => {
-            config.gravity *= -1;
-            player.velocity.y = 0;
-        })
-        .withEndCallback((level) => {
-            keyObjects.player.jumpOverload = null
-            config.gravity = Math.abs(config.gravity);
-        }),
+    // new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4)
+    //     .withStartCallback((level) => {
+    //         config.gravity *= -1;
+    //         config.jumpForce *= -1;
+    //         keyObjects.player.flip()
+    //       //flip player
+    //     })
+    //     .withEndCallback((level) => {
+    //         config.gravity *= -1;
+    //         config.jumpForce *= -1;
+    //         keyObjects.player.flip()
+    //       //flip player
+    //     }),
+    // new Level(1, 0.5, 0.3, [0.1, 0.3], 0.4)
+    //     .withStartCallback((level) => config.scrollSpeed *= 4)
+    //     .withEndCallback((level) => config.scrollSpeed /= 4),
+    // new Level(5, 0.4, 0.275, [0.075, 0.3], 0.4),
+    // new Level(3, 0.4, 0.4, [0.075, 0.3], 0.4)
+    //     .withStartCallback((level) => keyObjects.player.jumpOverload = (player) => {
+    //         config.gravity *= -1;
+    //         player.velocity.y = 0;
+    //     })
+    //     .withEndCallback((level) => {
+    //         keyObjects.player.jumpOverload = null
+    //         config.gravity = Math.abs(config.gravity);
+    //     }),
 ];

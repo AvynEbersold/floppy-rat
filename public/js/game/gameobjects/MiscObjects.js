@@ -10,10 +10,11 @@ function createMountains() {
         "images/FB_Mountains.png",
         new Rect(
             0,
-            0.3 * dimensions.heightToWidthRatio,
+            0.5 * dimensions.heightToWidthRatio,
             1,
-            0.2 * dimensions.heightToWidthRatio
-        )
+            0.4 * dimensions.heightToWidthRatio
+        ),
+        new Vector(1, 1)
     )
         .withUpdateCallback(scrollLeftUpdateCallback(config.scrollSpeed / 2))
         .withRenderStep(RenderStep.Early);
@@ -27,7 +28,8 @@ function createGround() {
             0.85 * dimensions.heightToWidthRatio,
             1,
             0.15 * dimensions.heightToWidthRatio
-        )
+        ),
+        new Vector(1, 1)
     )
         .withUpdateCallback(scrollLeftUpdateCallback(config.scrollSpeed*2))
         .withOverlapCallback((obj, other) => {
@@ -88,14 +90,14 @@ function createPlayButtonObject(fader, scoreText, highScoreText) {
 }
 
 function createScoreText() {
-		return new TextObject(0.5, 0.57, `score: ${game.score}`, {
+		return new TextObject(0.5, 0.57, `SCORE: ${game.score}`, {
 			size: 50,
         align: "center",
     });
 }
 
 function createHighScoreText() {
-		return new TextObject(0.5, 0.63, `high score: ${game.highScore}`, {
+		return new TextObject(0.5, 0.63, `HIGH SCORE: ${game.highScore}`, {
         size: 40,
         align: "center",
     });
@@ -104,7 +106,7 @@ function createHighScoreText() {
 function createScoreCounter() {
 		return new TextObject(0.97, 0.05, "0", { size: 35, align: "right" })
         .withUpdateCallback((obj, deltaTime) => {
-            obj.text = `${game.score} ${levelList.length > 0 ? `/ ${game.levelIndex + 1}` : ""}`;
+            obj.text = `${game.score} ${levelList.length > 1 ? `/ ${game.levelIndex + 1}` : ""}`;
         })
         .withRenderStep(RenderStep.Late);
 }

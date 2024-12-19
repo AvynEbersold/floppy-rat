@@ -104,7 +104,7 @@ function createHighScoreText() {
 }
 
 function createScoreCounter() {
-		return new TextObject(0.97, 0.05, "0", { size: 35, align: "right" })
+		return new TextObject(0.99, 0.05, "0", { size: 72, align: "right" })
         .withUpdateCallback((obj, deltaTime) => {
             obj.text = `${game.score} ${levelList.length > 1 ? `/ ${game.levelIndex + 1}` : ""}`;
         })

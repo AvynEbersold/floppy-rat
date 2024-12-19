@@ -8,10 +8,17 @@ class ImageObject extends VisibleObject {
     constructor(imagePath, rect, sourceSelectionDimensions = null) {
         super(rect);
 
+        if (sourceSelectionDimensions)
+            this.sourceSelectionDimensions = sourceSelectionDimensions;
+
+        this.setImage(imagePath);
+    }
+
+    setImage(imagePath) {
         this.image = new Image();
         this.image.src = imagePath;
         this.image.onload = () => {
-            if (!sourceSelectionDimensions) {
+            if (!this.sourceSelectionDimensions) {
                 this.sourceSelectionDimensions = {
                     x: 0,
                     y: 0,
@@ -20,16 +27,13 @@ class ImageObject extends VisibleObject {
                 };
             }
         };
-
-        if (sourceSelectionDimensions)
-            this.sourceSelectionDimensions = sourceSelectionDimensions;
     }
 
     render(canvas) {
         this.preRender(canvas);
 
         const targetRect = this.toPixels();
-        
+
         if (this.sourceSelectionDimensions)
             canvas.drawImage(
                 this.image,

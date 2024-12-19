@@ -75,7 +75,7 @@ class Level {
         game.level.end();
 
         console.log("Swapping to next level...");
-        game.setLevel(Math.min(game.levelIndex + 1, levelList.length - 1));
+        game.setLevel((game.levelIndex + 1) % levelList.length);
         game.level.start();
     }
 
@@ -92,7 +92,7 @@ class Level {
 
 const levelList = [
   //(pipeCount, pipeSpacing, gapSize, gapRange, maxGapYChange)
-    new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4),
+    new Level(25, 0.5, 0.3, [0.1, 0.3], 0.4),
     //new Level(5, 0.4, 0.275, [0.075, 0.325], 0.4),
     // new Level(5, 0.25, 0.4, [0.0, 0.3], 0.2),
     //new Level(5, 0.5, 0.3, [0.1, 0.3], 0.4)
